@@ -31,6 +31,10 @@ jobs:
           mvn clean install
           ls
     
+    - name: Build Docker image
+      run: |
+        docker build -t $IMAGE_NAME java-app
+        ls
     # - name: Build with Maven
     #   run: mvn -B package --file pom.xml
     
