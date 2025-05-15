@@ -4,10 +4,11 @@ on:
   push:
     branches: [ main ]
 
-# env:
-#   AWS_REGION: us-east-1
-#   ECR_REPOSITORY: java-maven-ecr-demo
-#   IMAGE_TAG: latest
+env:
+  IMAGE_NAME: sample-java-app
+  # AWS_REGION: us-east-1
+  # ECR_REPOSITORY: java-maven-ecr-demo
+  IMAGE_TAG: latest
 
 jobs:
   build:
@@ -33,7 +34,7 @@ jobs:
     
     - name: Build Docker image
       run: |
-        docker build -t $IMAGE_NAME java-app
+        docker build -t $IMAGE_NAME $IMAGE_TAG
         ls
     # - name: Build with Maven
     #   run: mvn -B package --file pom.xml
