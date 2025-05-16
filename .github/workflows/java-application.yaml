@@ -79,8 +79,7 @@ jobs:
       env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ vars.IMAGE_TAG }}
-          # IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ github.sha }}
       run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -88,11 +87,6 @@ jobs:
 
     - name: Output image URI
       run: echo "Image pushed to ${{ steps.build-image.outputs.image }}"
-
-    # - uses: actions/checkout@v4
-    #   with:
-    #     # Disabling shallow clones is recommended for improving the relevancy of reporting
-    #     fetch-depth: 0
         
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v5.2.0
