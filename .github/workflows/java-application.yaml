@@ -23,7 +23,7 @@ jobs:
     - name: building the package
       run: |
           mvn test
-  sonar_scan:
+  build:
     runs-on: self-hosted
     needs: test
     steps:
