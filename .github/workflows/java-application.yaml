@@ -47,7 +47,7 @@ jobs:
 
   build-docker-image:
     runs-on: self-hosted
-    needs: sonar_scan
+    needs: build
     steps:
     - name: Checkout the code
       uses: actions/checkout@v3
