@@ -58,10 +58,10 @@ jobs:
         name: app-jar
         path: app  # this will download jar file to the app folder
 
-    - name: build the docker image
-      run: |
-        docker build -t $IMAGE_NAME .
-        docker image ls
+    # - name: build the docker image
+    #   run: |
+    #     docker build -t $IMAGE_NAME .
+    #     docker image ls
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
