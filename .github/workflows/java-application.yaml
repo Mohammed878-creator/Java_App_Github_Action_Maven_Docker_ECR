@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_TAG: latest
+  # IMAGE_TAG: latest
   IMAGE_NAME: sample-java-app
 
 jobs:
@@ -90,25 +90,25 @@ jobs:
     - name: Output image URI
       run: echo "Image pushed to ${{ steps.build-image.outputs.image }}"
 
-    # - uses: actions/checkout@v4
-    #   with:
-    #     # Disabling shallow clones is recommended for improving the relevancy of reporting
-    #     fetch-depth: 0
+    - uses: actions/checkout@v4
+      with:
+        # Disabling shallow clones is recommended for improving the relevancy of reporting
+        fetch-depth: 0
         
-    # - name: SonarQube Scan
-    #   uses: SonarSource/sonarqube-scan-action@v5.2.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
-    #   env:
-    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    #     SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@v5.2.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
 
-    # - name: SonarQube Quality Gate check
-    #   id: sonarqube-quality-gate-check
-    #   uses: sonarsource/sonarqube-quality-gate-action@master
-    #   with:
-    #       pollingTimeoutSec: 600
-    #   env:
-    #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    #       SONAR_HOST_URL: ${{ var.SONAR_HOST_URL }} #OPTIONAL
+    - name: SonarQube Quality Gate check
+      id: sonarqube-quality-gate-check
+      uses: sonarsource/sonarqube-quality-gate-action@v5
+      with:
+          pollingTimeoutSec: 600
+      env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ var.SONAR_HOST_URL }} #OPTIONAL
 
 
 
