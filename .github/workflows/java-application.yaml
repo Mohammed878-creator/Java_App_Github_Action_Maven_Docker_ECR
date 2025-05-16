@@ -6,6 +6,7 @@ on:
 
 env:
   IMAGE_TAG: latest
+  IMAGE_NAME: sample-java-app
 
 jobs:
   test:
